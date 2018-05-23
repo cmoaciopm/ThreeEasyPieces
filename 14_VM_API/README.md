@@ -169,9 +169,9 @@ The program exited with below error message
 /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf0)[0x7f30035aa830]
 ./a.out[0x4004e9]
 ======= Memory map: ========
-00400000-00401000 r-xp 00000000 08:02 32667714                           /home/agong/myGithub/ThreeEasyPieces/14_VM_API/a.out
-00600000-00601000 r--p 00000000 08:02 32667714                           /home/agong/myGithub/ThreeEasyPieces/14_VM_API/a.out
-00601000-00602000 rw-p 00001000 08:02 32667714                           /home/agong/myGithub/ThreeEasyPieces/14_VM_API/a.out
+00400000-00401000 r-xp 00000000 08:02 32667714                           /home/cmoaciopm/myGithub/ThreeEasyPieces/14_VM_API/a.out
+00600000-00601000 r--p 00000000 08:02 32667714                           /home/cmoaciopm/myGithub/ThreeEasyPieces/14_VM_API/a.out
+00601000-00602000 rw-p 00001000 08:02 32667714                           /home/cmoaciopm/myGithub/ThreeEasyPieces/14_VM_API/a.out
 0256c000-0258d000 rw-p 00000000 00:00 0                                  [heap]
 7f2ffc000000-7f2ffc021000 rw-p 00000000 00:00 0 
 7f2ffc021000-7f3000000000 ---p 00000000 00:00 0 
