@@ -160,4 +160,68 @@ Free List [ Size 4 ]:  [ addr:1002 sz:1 ] [ addr:1003 sz:5 ] [ addr:1015 sz:1 ] 
 > the different free list orderings (-l ADDRSORT, -l SIZESORT+,
 > -l SIZESORT-) to see how the policies and the list orderings interact.
 
+## Question 5
+> Coalescing of a free list can be quite important. Increase the number
+> of random allocations (say to -n 1000). What happens to larger
+> allocation requests over time? Run with and without coalescing
+> (i.e., without and with the -C flag). What differences in outcome do
+> you see? How big is the free list over time in each case? Does the
+> ordering of the list matter in this case?
 
+## Question 6
+> What happens when you change the percent allocated fraction -P
+> to higher than 50? What happens to allocations as it nears 100?
+> What about as it nears 0?
+
+## Question 7
+> What kind of specific requests can you make to generate a highlyfragmented
+> free space? Use the -A flag to create fragmented free
+> lists, and see how different policies and options change the organization
+> of the free list.
+
+./malloc.py -S 15 -A +1,+2,+3,+4,+5,-0,-1,-2,-3,-4
+```
+seed 0
+size 15
+baseAddr 1000
+headerSize 0
+alignment -1
+policy BEST
+listOrder ADDRSORT
+coalesce False
+numOps 10
+range 10
+percentAlloc 50
+allocList +1,+2,+3,+4,+5,-0,-1,-2,-3,-4
+compute True
+
+ptr[0] = Alloc(1)  returned 1000 (searched 1 elements)
+Free List [ Size 1 ]:  [ addr:1001 sz:14 ]
+
+ptr[1] = Alloc(2)  returned 1001 (searched 1 elements)
+Free List [ Size 1 ]:  [ addr:1003 sz:12 ]
+
+ptr[2] = Alloc(3)  returned 1003 (searched 1 elements)
+Free List [ Size 1 ]:  [ addr:1006 sz:9 ]
+
+ptr[3] = Alloc(4)  returned 1006 (searched 1 elements)
+Free List [ Size 1 ]:  [ addr:1010 sz:5 ]
+
+ptr[4] = Alloc(5)  returned 1010 (searched 1 elements)
+Free List [ Size 0 ]:
+
+Free(ptr[0]) returned 0
+Free List [ Size 1 ]:  [ addr:1000 sz:1 ]
+
+Free(ptr[1]) returned 0
+Free List [ Size 2 ]:  [ addr:1000 sz:1 ] [ addr:1001 sz:2 ]
+
+Free(ptr[2]) returned 0
+Free List [ Size 3 ]:  [ addr:1000 sz:1 ] [ addr:1001 sz:2 ] [ addr:1003 sz:3 ]
+
+Free(ptr[3]) returned 0
+Free List [ Size 4 ]:  [ addr:1000 sz:1 ] [ addr:1001 sz:2 ] [ addr:1003 sz:3 ] [ addr:1006 sz:4 ]
+
+Free(ptr[4]) returned 0
+Free List [ Size 5 ]:  [ addr:1000 sz:1 ] [ addr:1001 sz:2 ] [ addr:1003 sz:3 ] [ addr:1006 sz:4 ] [ addr:1010 sz:5 ]
+```
